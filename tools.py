@@ -114,7 +114,6 @@ if __name__ == '__main__':
     tools = Tools()
     df = tools.load_dataset('dataset_raw.csv')
     print(df.head())
-    print(df.columns)
     
 
 
