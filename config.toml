@@ -48,3 +48,7 @@ n_neighbors = 5 # Set to false will result in the search for the best number of 
 n_neighbors_range = [3, 10] # Range of neighbors to search for the best one
 cv = 10 # Number of folds for cross-validation
 scoring = "f1"
+
+[logistic_regression_model]
+scaler_type = "standard" # Options: "standard", "minmax"
+train_size = 0.8 # Proportion of the dataset to include in the train split
