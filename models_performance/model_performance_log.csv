@@ -1,0 +1,4 @@
+model_name,timestamp,training_time_seconds,best_cv_f1_score,test_accuracy,test_precision,test_recall,test_f1_score,test_specificity,true_positives,false_positives,true_negatives,false_negatives,best_parameters,param_profile
+LR_model_250604-213254_F1-0-8945,2025-06-04 22:32:54,9.25,0.8945,0.8565,0.858,0.9451,0.8994,0.669,568,94,190,33,"{""batch_size"": 64, ""lr"": 0.01, ""max_epochs"": 50, ""optimizer__weight_decay"": 0}",pytorch_logistic_regression_testing
+LR_model_250604-214926_F1-0-8984,2025-06-04 22:49:26,575.12,0.8984,0.8576,0.8593,0.9451,0.9002,0.6725,568,93,191,33,"{""batch_size"": 64, ""lr"": 0.01, ""max_epochs"": 50, ""optimizer__weight_decay"": 0.001}",pytorch_logistic_regression_quick
+LR_model_250604-220510_F1-0-8986,2025-06-04 23:05:10,611.74,0.8986,0.8576,0.8593,0.9451,0.9002,0.6725,568,93,191,33,"{""batch_size"": 64, ""lr"": 0.01, ""max_epochs"": 50, ""optimizer__weight_decay"": 0.001}",pytorch_logistic_regression_quick

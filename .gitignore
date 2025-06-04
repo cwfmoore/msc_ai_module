@@ -162,3 +162,8 @@ cython_debug/
 summaries/
 .summaries/
 
+notebook_to_text.py
+logistic_regression.txt
+logistic_regression_md.txt
+models/
+model_performance/
