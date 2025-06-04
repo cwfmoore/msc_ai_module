@@ -39,3 +39,12 @@ categorical_features = [
     "scholarship_holder",
     "international"
 ]
+
+[k-NN_model]
+scaler_type = "minmax" # Options: "standard", "minmax"
+train_size = 0.8 # Proportion of the dataset to include in the train split
+stratify = true # Whether to stratify the train-test split
+n_neighbors = 5 # Set to false will result in the search for the best number of neighbors
+n_neighbors_range = [3, 10] # Range of neighbors to search for the best one
+cv = 10 # Number of folds for cross-validation
+scoring = "f1"
