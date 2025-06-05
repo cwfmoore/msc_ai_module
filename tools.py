@@ -20,14 +20,14 @@ class Tools:
             return
 
         message_types = {
-            'error': '[red bold]ERROR!',
-            'success': '[green bold]SUCCESS!',
-            'time_taken': '[blue bold]TIME TAKEN',
-            'attention': '[hot_pink bold]ATTENTION!',
-            'working': '[blue bold]WORKING',
-            'testing': '[hot_pink bold]TESTING',
-            'warning': '[red bold]! WARNING !',
-            'waiting': '[magenta bold]Waiting...'
+            'error': '❌ [red bold]ERROR!',
+            'success': '✅ [green bold]SUCCESS!',
+            'time_taken': '⏱️ [blue bold]TIME TAKEN',
+            'attention': '🔔 [hot_pink bold]ATTENTION!',
+            'working': '⚙️ [blue bold]WORKING',
+            'testing': '🧪 [hot_pink bold]TESTING',
+            'warning': '⚠️ [red bold]! WARNING !',
+            'waiting': '⏳ [magenta bold]Waiting...'
         }
         message_type = message_types.get(message_type.lower(), message_type)
 
@@ -43,7 +43,7 @@ class Tools:
                 formatted_message += f"{formatted_key} {formatted_value}"
             formatted_message = formatted_message[:-2]
 
-        print(f'>>> [{self.get_now()}] {message_type}[white]: [yellow]{formatted_message}')
+        print(f'>>> {message_type}[white]: {formatted_message}')
 
         if kwargs.get('new_line_after'):
             print('')

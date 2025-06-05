@@ -53,80 +53,26 @@ scoring = "f1"
 scaler_type = "standard"  # Options: "standard", "minmax"
 train_size = 0.8  # Proportion of the dataset to include in the train split
 use_acceleration = true  # Enable Intel acceleration for faster training
+train_new_model = false  # Set to false to load an existing model
 
-[pytorch_logistic_regression_testing]
-# Ultra quick - 1 combination
-lr_values = [0.01]
+[pytorch_logistic_regression_testing] # Minimal configuration for quick testing
+lr_values = [0.005, 0.01]
 max_epochs_values = [50]
 weight_decay_values = [0]
 batch_size_values = [64]
-optimizer_types = ["adam"]
-cv_folds = 2
-scoring_metric = "f1"
-random_state = 42
-
-[pytorch_logistic_regression_quick]
-# Quick exploration - ~96 combinations
-lr_values = [0.001, 0.01, 0.1]
-max_epochs_values = [50, 100]
-weight_decay_values = [0, 0.001, 0.01]
-batch_size_values = [32, 64]
-optimizer_types = ["adam", "sgd"]
-cv_folds = 3  # Faster validation
-scoring_metric = "f1"
-random_state = 42
-
-[pytorch_logistic_regression_detailed]
-# Detailed search around best quick results - ~500 combinations
-lr_values = [0.005, 0.01, 0.02, 0.05, 0.1]
-max_epochs_values = [75, 100, 150, 200]
-weight_decay_values = [0, 0.0005, 0.001, 0.005, 0.01]
-batch_size_values = [32, 64, 128]
-optimizer_types = ["adam", "adamw"]
 cv_folds = 5
-scoring_metric = "f1"
-random_state = 42
+random_state = "random"  # Use random state for reproducibility
+scoring_metric = "withdrawal_recall"  # Use custom scorer
+threshold = 0.65  # Default threshold for classification
+class_weights = [1, 1.5] # Class weights for imbalanced dataset
 
-# ------------------------------------------------------
-
-[pytorch_logistic_regression_intensive]
-
-# Learning rates - logarithmic scale for thorough exploration
-lr_values = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.2]
-
-# Training epochs - early, standard, and extended training
-max_epochs_values = [25, 50, 100, 150, 200, 300]
-
-# L2 regularisation - from none to heavy regularisation
-weight_decay_values = [0, 0.00001, 0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05]
-
-# Batch sizes - from small (more updates) to large (stable gradients)
-batch_size_values = [16, 32, 64, 128, 256]
-
-# Optimizers with their specific parameters
-optimizer_types = ["adam", "sgd", "adamw"]
-
-# SGD momentum values (only used when optimizer is SGD)
-sgd_momentum_values = [0.0, 0.5, 0.9, 0.95]
-
-# Adam beta parameters (only used for Adam/AdamW)
-adam_beta1_values = [0.9, 0.95]
-adam_beta2_values = [0.999, 0.9999]
-
-# Learning rate scheduling
-use_lr_scheduler = true
-lr_scheduler_types = ["none", "step", "exponential"]
-lr_scheduler_step_size = [30, 50, 100]  # For StepLR
-lr_scheduler_gamma = [0.1, 0.5, 0.8]    # Decay factor
-
-# Dropout for regularisation (if you want to add to your model)
-dropout_rates = [0.0, 0.1, 0.2, 0.3]
-
-# Cross-validation
+[pytorch_logistic_regression_grid_search]
+lr_values = [0.001, 0.005, 0.01, 0.05]           # 4 values
+max_epochs_values = [50, 100, 150]               # 3 values  
+weight_decay_values = [0, 0.001, 0.01]           # 3 values
+batch_size_values = [64, 128]                    # 2 values
 cv_folds = 5
-scoring_metric = "f1"
 random_state = 42
-
-# Performance settings
-max_combinations = 200  # Limit grid search if too many combinations
-early_stopping_patience = 10  # Stop if no improvement for N epochs
+scoring_metric = "withdrawal_recall"
+threshold = 0.5
+class_weights = [1, 1.5, 2]                      # 3 values
