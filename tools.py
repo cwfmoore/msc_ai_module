@@ -27,7 +27,8 @@ class Tools:
             'working': '⚙️ [blue bold]WORKING',
             'testing': '🧪 [hot_pink bold]TESTING',
             'warning': '⚠️ [red bold]! WARNING !',
-            'waiting': '⏳ [magenta bold]Waiting...'
+            'waiting': '⏳ [magenta bold]Waiting...',
+            'info': 'ℹ️ [blue bold]INFO...'
         }
         message_type = message_types.get(message_type.lower(), message_type)
 
