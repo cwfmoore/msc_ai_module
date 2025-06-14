@@ -26,7 +26,7 @@ categorical_features = [
     "course",
     "daytime_evening_attendance",
     "previous_qualification",
-    "nationality",
+    "nacionality",
     "mothers_qualification",
     "fathers_qualification", 
     "mothers_occupation",
@@ -81,35 +81,35 @@ professional_occupation_codes = [
 scaler_type = "minmax" # Options: "standard", "minmax"
 train_size = 0.8 # Proportion of the dataset to include in the train split
 stratify = true # Whether to stratify the train-test split
-n_neighbors = 5 # Set to false will result in the search for the best number of neighbors
-n_neighbors_range = [3, 10] # Range of neighbors to search for the best one
+n_neighbors_range = [3, 19] # Range of neighbors to search for the best one
 cv = 10 # Number of folds for cross-validation
 scoring = "withdrawal_recall"
+
+[feature_groups]
+numeric_features = [
+    "application_order", 
+    "admission_grade", 
+    "age_at_enrollment",
+    "curricular_units_1st_sem_grade", 
+    "course_withdrawal_rate", 
+    "application_mode_withdrawal_rate"
+]
+binary_features = [
+    "tuition_fees_up_to_date", 
+    "scholarship_holder", 
+    "parental_higher_education", 
+    "parental_professional_occupation"
+]
+
+[logistic_regression_grid_search]
+C_values = [0.01, 0.1, 1.0, 10.0, 100.0]
+class_weights = ["none", "balanced"]  # "none" = None in Python
+max_iter = 1000
+random_state = 42
+cv_folds = 5
 
 [logistic_regression_model]
 scaler_type = "standard"  # Options: "standard", "minmax"
 train_size = 0.8  # Proportion of the dataset to include in the train split
 use_acceleration = true  # Enable Intel acceleration for faster training
 train_new_model = false  # Set to false to load an existing model
-
-[pytorch_logistic_regression_testing] # Minimal configuration for quick testing
-lr_values = [0.005, 0.01]
-max_epochs_values = [50]
-weight_decay_values = [0]
-batch_size_values = [64]
-cv_folds = 5
-random_state = "random"  # Use random state for reproducibility
-scoring_metric = "withdrawal_recall"  # Use custom scorer
-threshold = 0.65  # Default threshold for classification
-class_weights = [1, 1.5] # Class weights for imbalanced dataset
-
-[pytorch_logistic_regression_grid_search]
-lr_values = [0.001, 0.005, 0.01, 0.05]           # 4 values
-max_epochs_values = [50, 100, 150]               # 3 values  
-weight_decay_values = [0, 0.001, 0.01]           # 3 values
-batch_size_values = [64, 128]                    # 2 values
-cv_folds = 5
-random_state = 42
-scoring_metric = "withdrawal_recall"
-threshold = 0.5
-class_weights = [1, 1.5, 2]                      # 3 values
